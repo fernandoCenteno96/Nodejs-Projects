@@ -5,7 +5,7 @@ var bodyParser=require('body-parser');
 var app=express();
 
 // cargar archivos de ruta
-
+var project_routes=require('./routes/project');
 
 
 // middlewares
@@ -16,15 +16,6 @@ app.use(bodyParser.json());
 
 
 //rutas
-app.get('/',(req,res) => {
-    res.status(200).send(
-        "<h1>pagina de inicio<h1>"
-    );
-});
-app.get('/test',(req,res) => {
-    res.status(200).send({
-        menssage:"hola mundo desde mi api node js"
-    });
-});
+app.use('/api',project_routes);
 //exportar
 module.exports=app;
