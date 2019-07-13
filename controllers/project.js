@@ -35,6 +35,23 @@ var Project=require('../models/project');
 
         });
 
+    }, 
+    getProject: function(req,res){
+        var projectID=req.params.id;
+        console.log(projectID);
+        if(projectID==null)return res.status(404).send({message:"el proyecto no existe"});
+
+        Project.findById(projectID,(err,project)=>{
+            if(err)return res.status(500).sed({message:"error al devolver los datos"});
+           
+            if(!project) return res.status(404).send({message:"el proyecto no existe"});
+
+            return res.status(200).send({
+                project
+            });
+
+        });
+
     }
 
  };
